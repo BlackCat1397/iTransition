@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
+# Use jquery-turbolinks to Bootstrap’s dropdown menu
+gem 'jquery-turbolinks'
 # Use bootstrap-sass for styling
 gem 'bootstrap-sass', '3.2.0.0'
+# Use Devise as authentication provider
+gem 'devise', '3.4.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 # Use SCSS for stylesheets
