@@ -1,5 +1,5 @@
 <% provide(:title, "Sign up") %>
-<div class="center jumbotrone">
+<div class="center">
   <h1>Sign up</h1>
     <div class="row">
       <%= form_for(resource, as: resource_name, html: {class: 'col-md-offset-4 col-md-4'},
@@ -10,7 +10,7 @@
           <%= f.label :name %>
           <%= f.text_field :name, autofocus: true, class: 'form-control' %>
         </div>
-        
+
         <div class="form-group">
           <%= f.label :email %><br />
           <%= f.email_field :email, class: 'form-control' %>
