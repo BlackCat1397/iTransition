@@ -13,12 +13,18 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
 
+  #get '/asdasd' => 'users#create'
+
   get '/admin' => 'admin#index'
 
   get '/statuses' => 'statuses#index'
+  
+  put '/user/new', to: 'users#save', as: :user_save
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :users
+
   resources :statuses
     
   # The priority is based upon order of creation: first created -> highest priority.

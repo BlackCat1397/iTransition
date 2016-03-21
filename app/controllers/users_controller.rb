@@ -2,27 +2,41 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
 
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy, :save]
+
 
   def new
+    @user = User.new
   end
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :email, :password)
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+  end
+
+  def save
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to admin_url, notice: 'Status was successfully created.' }
+        format.json { render :show, status: :created, location: @status }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create
   end
 
   def update
-    @user = User.find(params[:id])
-
-    @user.update_attributes(user_params)
+    @user.save(validate: false)
     respond_to do |format|
       format.html { redirect_to admin_url, notice: 'User was successfully updated.' }
     end
@@ -34,11 +48,5 @@ class UsersController < ApplicationController
       format.html { redirect_to admin_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
   end
 end
