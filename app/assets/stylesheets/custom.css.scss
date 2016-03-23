@@ -4,11 +4,10 @@
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
-
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 50px;
 }
 
 section {
@@ -53,6 +52,29 @@ p {
   line-height: 1.7em;
 }
 
+.user-profile {
+  background-color: grey;
+  height: 205px;
+}
+
+.user-name {
+    bottom: 12px;
+    left: 201px;
+    position: absolute;
+}
+
+.user-pic {
+
+}
+
+.user-pic-box {
+    border-radius: 4px;
+    border: 4px solid #FFF;
+    box-shadow: 0 0 5px #000;
+    left: 15px;
+    top: 63px;
+    position: absolute;
+}
 /* logo */
 
 #logo {
@@ -62,7 +84,7 @@ p {
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  padding-top: 15px;
   font-weight: bold;
   &:hover {
     color: white;
