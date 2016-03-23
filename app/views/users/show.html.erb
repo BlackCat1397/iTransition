@@ -8,6 +8,32 @@
       <%= @user.name %>
     </h1>
   </div>
+  <table class="table table-striped" style="margin-top: 40px">
+    <thead>
+      <tr>
+        <th><%= @user.name.to_s+"'s posts" %></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= link_to 'Show', post %></td>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% @chapters = post.chapters %>
+        <% @chapters.each do |chapter| %>
+        <tr>
+          <td><%= chapter.title %></td>
+          <td colspan="3"></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 </div> 
 #content
 #medals
