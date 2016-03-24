@@ -31,6 +31,9 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
+a.btn:visited {
+  color: #fff;
+}
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -42,7 +45,7 @@ h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
   font-weight: normal;
   color: $gray-light;
 }
@@ -52,6 +55,9 @@ p {
   line-height: 1.7em;
 }
 
+article {
+  margin-bottom: 20px;
+}
 .user-profile {
   background-color: grey;
   height: 205px;
