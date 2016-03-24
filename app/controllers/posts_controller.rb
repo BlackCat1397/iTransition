@@ -4,11 +4,10 @@ class PostsController < ApplicationController
 
 
   def new
-    @post = Post.new
   end
 
   def post_params
-    params.require(:post)
+    params.require(:post).permit(:title)
   end
 
   def show
@@ -18,19 +17,13 @@ class PostsController < ApplicationController
   end
 
   def save
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to admin_url, notice: 'Status was successfully created.' }
-        format.json { render :show, status: :created, location: @status }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def create
+    @user = User.find_by(:id => params[:user_id])
+    @post = @user.posts.create(post_params)
+    @post.chapters.create(:number => 1, :title => 'First chapter')
+    redirect_to edit_user_post_path(:id => @post.id)
   end
 
   def update
