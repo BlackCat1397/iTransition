@@ -14,10 +14,16 @@
     <%= render 'new_post' %> 
   <% end %>
 </div>
+<p id="notice"><%= notice %></p>
 <div class="row" style="margin-top: 60px">
   <% @posts.each do |post| %>
     <article class="center col-md-offset-2 col-md-8">
-      <header><h2><%= post.title %></h2></header>
+      <header>
+        <h2><%= post.title %></h2>
+        <h2><%= link_to 'Delete', user_post_path(:user_id => @user.id, :id => post.id),
+                          :data => {:confirm => 'Are you sure?'}, :method => 'delete' %></h2>
+        <h2><%= link_to 'Edit', edit_user_post_path(:user_id => @user.id, :id => post.id) %></h2>
+      </header>
       <p><%= post.chapters.find_by(:number => 1).title %></p>
       <footer>#rating</footer>
     </article>

@@ -34,9 +34,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    @post.destroy
     respond_to do |format|
-      format.html { redirect_to admin_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to user_url(:id => params[:user_id]), notice: 'Post was successfully deleted.' }
       format.json { head :no_content }
     end
   end
