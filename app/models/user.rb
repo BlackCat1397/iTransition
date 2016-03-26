@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
                           :trackable, :validatable, :lockable
 
   has_many :posts, dependent: :destroy
+  before_create :set_default_role
 
-  ROLES = %i[admin user guest]
+  ROLES = %i[admin user]
 
   def roles=(roles)
     roles = [*roles].map { |r| r.to_sym }
@@ -25,4 +26,9 @@ class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
+
+  private 
+  def set_default_role
+    self.roles = 'user'
+  end
 end

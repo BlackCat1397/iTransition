@@ -9,8 +9,8 @@ class Ability
     if user.has_role?(:admin)
       can :manage, :all
     elsif user.has_role?(:user)
-      can :create, Status
-      can :update, Status
+      can :manage, Post
+      can :manage, Chapter
       can :read, :all
       can :show, :all
     else
