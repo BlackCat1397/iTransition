@@ -4,7 +4,7 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:title)
+    params.require(:chapter).permit(:title, :content)
   end
 
   def create
@@ -15,5 +15,11 @@ class ChaptersController < ApplicationController
 
   def edit
     @chapter = Chapter.find_by(:id => params[:id])
+  end
+
+  def update
+    @chapter = Chapter.find_by(:id => params[:id])
+    @chapter.update(chapter_params)
+    redirect_to edit_user_post_path(:id => params[:post_id])
   end
 end

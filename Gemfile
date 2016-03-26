@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+# Maarkdown gem
+gem 'redcarpet', '~> 3.0.0'
+# CanCanCan for authorization
 gem 'cancancan'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
