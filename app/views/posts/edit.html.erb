@@ -1,2 +1,7 @@
 <% provide(:title, 'Edit post') %>
 <h1>Edit <%= @post.title %></h1>
+<% @post.chapters.each do |chapter| %>
+  <h2><%= chapter.title %></h2>
+  <%= link_to 'Edit', edit_user_post_chapter_path(:post_id => @post.id, :id => chapter.id) %>
+<% end %>
+<%= link_to 'New chapter', new_user_post_chapter_path(:post_id => @post.id) %>

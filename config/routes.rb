@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   resources :users do  
-    resources :posts
+    resources :posts do
+      resources :chapters
+    end
   end
   
   resources :statuses

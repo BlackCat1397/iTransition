@@ -27,10 +27,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @user.save(validate: false)
-    respond_to do |format|
-      format.html { redirect_to admin_url, notice: 'User was successfully updated.' }
-    end
   end
 
   def destroy

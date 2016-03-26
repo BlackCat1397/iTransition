@@ -1,0 +1,16 @@
+<div class="center">
+  <div class="row">
+    <%= form_for(@chapter, :url => user_post_chapters_path,
+            html: { method: :post, class: 'col-md-offset-4 col-md-4' }) do |f| %>
+
+      <div class="form-group">
+        <%= f.label :title %><br/>
+        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Create", class: 'btn btn-primary'  %>
+      </div>
+    <% end %>
+  </div>
+</div>
