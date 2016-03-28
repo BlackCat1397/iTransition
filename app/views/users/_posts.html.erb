@@ -7,12 +7,17 @@
           <h1 class="post-title"><%= post.title %></h1>
         </div>
         <div class="col-sm-4 post-btns">
+  <% if current_user %>
+    <% if current_user.id == @user.id || User.find_by(:id => current_user.id).has_role?(:admin) %>
+
           <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
                 edit_user_post_path(:user_id => @user.id, :id => post.id) %>
           <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
                 user_post_path(:user_id => @user.id, :id => post.id),
                 :data => {:confirm => 'Are you sure?'}, :method => 'delete' %>
         </div>
+    <% end %>
+  <% end %>
       </header>
       <div class="post-preview-content"> 
         <h4><%= post.chapters.find_by(:number => 1).title %></h4>

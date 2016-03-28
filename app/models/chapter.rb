@@ -3,4 +3,8 @@ class Chapter < ActiveRecord::Base
 
   def show
   end
+
+  def user_id
+    self.post.user_id
+  end
 end
