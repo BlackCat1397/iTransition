@@ -10,36 +10,13 @@
   </div>
 </div> 
 <div class="row text-center" style="margin-top: 80px">
-  <% if current_user.id == @user.id %>
-    <%= render 'new_post' %> 
+  <% if current_user %>
+    <% if current_user.id == @user.id %>
+      <%= render 'new_post' %> 
+    <% end %>
   <% end %>
 </div>
 <p id="notice"><%= notice %></p>
-<% @posts.each do |post| %>
-  <div class="row my-article">
-    <article class="center col-md-offset-2 col-md-8">
-      <header class="row">
-        <div class="col-sm-8">
-          <h1 class="post-title"><%= post.title %></h1>
-        </div>
-        <div class="col-sm-4 post-btns">
-          <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
-                edit_user_post_path(:user_id => @user.id, :id => post.id) %>
-          <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
-                user_post_path(:user_id => @user.id, :id => post.id),
-                :data => {:confirm => 'Are you sure?'}, :method => 'delete' %>
-        </div>
-      </header>
-      <div class="post-preview-content"> 
-        <h4><%= post.chapters.find_by(:number => 1).title %></h4>
-        <p><%= (post.chapters.find_by(:number => 1).content||'there')[0..500]+"..." %></p>
-      </div>
-      <footer>
-        <h2 class="post-author"><%= post.user.name %></h2>
-        #rating
-      </footer>
-    </article>
-  </div>
- <% end %>
+<%= render 'posts' %>
 #content
 #medals
