@@ -28,6 +28,7 @@ $(function() {
       var form_id = $(this).attr('data-form-id');
 
       set_stars(form_id, stars);
+      set_rated(form_id);
 
       $('#' + form_id + '_stars').val(stars);
 
@@ -47,12 +48,14 @@ $(function() {
       url: ajax_path,
       dataType: 'JSON',
       success: function(data, textStatus, xhr) {
-        if(data.stars) {
-          set_stars(form_id, data.stars);
-        }
-        else {
+        if(data.user_stars) {
           set_stars(form_id, data.user_stars);
           set_rated(form_id);
+          $('#' + form_id + '_number').text(data.stars);
+        }
+        else if(data.stars) {
+          set_stars(form_id, data.stars);
+          $('#' + form_id + '_number').text(data.stars);
         }
       }
     });

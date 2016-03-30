@@ -28,14 +28,15 @@ class PostsController < ApplicationController
 
   def rating
     @post = Post.find_by(:id => params[:id])
+    @stars = @post.ratings.average(:stars)
     if current_user
       if(@rating = @post.ratings.find_by(:user_id => current_user.id))
-        render :json => {:user_stars => @rating.stars}
+        render :json => {:user_stars => @rating.stars, :stars => @stars}
       else
-        render :json => {:stars => @post.ratings.average(:stars)}
+        render :json => {:stars => @stars}
       end 
     else
-      render :json => {:stars => @post.ratings.average(:stars)}
+      render :json => {:stars => @stars}
     end 
   end
   def update

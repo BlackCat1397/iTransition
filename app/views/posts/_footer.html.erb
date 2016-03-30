@@ -1,29 +1,20 @@
 
-
-#rating
-<ul class="rating">
-  
   <% form_id = "post_#{post.id}_rating" %>
 
-  <% if current_user %>
-    <%= form_for post.ratings.find_by(:user_id => current_user.id)||post.ratings.build,
-                    :html => {:id => form_id, :class => 'rating-form', data: {ajax_path: "posts/#{post.id}/rating"}} do |f| %>
-    <%= f.hidden_field :post_id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :stars, :id => "#{form_id}_stars" %>
+  <p3 id='<%= "#{form_id}_number" %>'></p3>  
 
-    <% end %>
-  <% else %>
-    <%= form_for post.ratings.build,
-                :html => {:id => form_id, :class => 'rating-form', data: {ajax_path: "posts/#{post.id}/rating"}} do |f|%>
+  <%= form_for post.ratings.build,
+                  :html => {:id => form_id, :class => 'rating-form', data: {ajax_path: "posts/#{post.id}/rating"}} do |f| %>
     <%= f.hidden_field :post_id %>
-    <%= f.hidden_field :stars, :id => "#{form_id}_stars" %>
+    <% if current_user %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
     <% end %>
+    <%= f.hidden_field :stars, :id => "#{form_id}_stars" %>
   <% end %>
+
   <% (1..5).each do |i| %>
     <span class="glyphicon glyphicon-star-empty star-rating" id='<%= "#{form_id}_#{i}" %>' data-stars="<%= i %>" data-form-id="<%= form_id %>"></span>
   <% end %>
-</ul>
 
 
 <%= link_to gravatar_for(post.user, {:size => '30'}), user_path(:id => post.user.id), class: "post-author" %>
