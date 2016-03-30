@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   get '/posts/:id/rating' => 'posts#rating'
+  get 'users/posts/:id/rating' => 'posts#rating'
   get '/home' => 'static_pages#home'
 
   get '/help' => 'static_pages#help'

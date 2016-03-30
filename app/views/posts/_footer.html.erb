@@ -19,10 +19,11 @@
 
 <%= link_to gravatar_for(post.user, {:size => '30'}), user_path(:id => post.user.id), class: "post-author" %>
 <%= link_to post.user.name, user_path(:id => post.user.id), class: "post-author" %>
+
 <% if post.comments.length != 0 %>
   <%= link_to '<span class="glyphicon glyphicon-comment"></span>'.html_safe, '#' %>
   <%= post.comments.length %>
 <% else %>
-  <%= link_to 'Comment', '#' %>
+  <%= link_to 'Comment', new_comment_path(:post_id => post.id, :user_id => current_user.id) %>
 <% end %>
 <%= link_to image_tag("rating.png", alt: "Rails logo"), '#' %>
