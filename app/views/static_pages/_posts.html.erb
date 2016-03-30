@@ -12,9 +12,7 @@
         <p><%= (post.chapters.find_by(:number => 1).content||'there')[0..500]+"..." %></p>
       </div>
       <footer>
-        <h2 class="post-author"><%= post.user.name %></h2>
-        <%= link_to image_tag("rating.png", alt: "Rails logo"),
-                                                  'http://rubyonrails.org/' %>
+        <%= render partial: 'posts/footer', locals: {post: post} %>
       </footer>
     </article>
   </div>

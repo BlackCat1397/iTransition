@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323153624) do
+ActiveRecord::Schema.define(version: 20160329210428) do
 
   create_table "chapters", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 20160323153624) do
 
   add_index "chapters", ["post_id"], name: "index_chapters_on_post_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.text     "text",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.string   "title",      limit: 255
@@ -33,6 +44,17 @@ ActiveRecord::Schema.define(version: 20160323153624) do
 
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "stars",      limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "ratings", ["post_id"], name: "index_ratings_on_post_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.text     "post",       limit: 65535
@@ -72,5 +94,9 @@ ActiveRecord::Schema.define(version: 20160323153624) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "chapters", "posts"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "ratings", "posts"
+  add_foreign_key "ratings", "users"
 end

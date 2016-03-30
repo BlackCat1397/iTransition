@@ -26,6 +26,18 @@ class PostsController < ApplicationController
     redirect_to edit_user_post_path(:id => @post.id)
   end
 
+  def rating
+    @post = Post.find_by(:id => params[:id])
+    if current_user
+      if(@rating = @post.ratings.find_by(:user_id => current_user.id))
+        render :json => {:user_stars => @rating.stars}
+      else
+        render :json => {:stars => @post.ratings.average(:stars)}
+      end 
+    else
+      render :json => {:stars => @post.ratings.average(:stars)}
+    end 
+  end
   def update
   end
 

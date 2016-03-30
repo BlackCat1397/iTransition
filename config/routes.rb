@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :ratings
+  resources :comments
   get '/statuses' => 'statuses#index'
   root 'static_pages#home'
 
+  get '/posts/:id/rating' => 'posts#rating'
   get '/home' => 'static_pages#home'
 
   get '/help' => 'static_pages#help'
@@ -12,8 +15,6 @@ Rails.application.routes.draw do
   get '/contact' => 'static_pages#contact'
 
   get '/signup' => 'users#new'
-
-  #get '/asdasd' => 'users#create'
 
   get '/admin' => 'admin#index'
 

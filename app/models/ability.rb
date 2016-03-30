@@ -13,9 +13,11 @@ class Ability
       can :manage, Chapter, { user_id: user.id}
       can :read, :all
       can :show, :all
+      can :rating, :all
     else
       can :read, :all
       can :show, :all
+      can :rating, :all
     end
     # Define abilities for the passed in user here. For example:
     #

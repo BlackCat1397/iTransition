@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
                           :trackable, :validatable, :lockable
 
   has_many :posts, dependent: :destroy
+  has_many :comments, through: :posts
   before_create :set_default_role
 
   ROLES = %i[admin user]
