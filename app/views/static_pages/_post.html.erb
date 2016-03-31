@@ -1,0 +1,16 @@
+<div class="row my-article">
+  <article class="center col-md-offset-2 col-md-8">
+    <header class="row">
+      <div class="col-sm-8">
+        <h1 class="post-title"><%= post.title %></h1>
+      </div>
+    </header>
+    <div class="post-preview-content"> 
+      <h4><%= post.chapters.find_by(:number => 1).title %></h4>
+      <p><%= (post.chapters.find_by(:number => 1).content||'there')[0..500]+"..." %></p>
+    </div>
+    <footer>
+      <%= render partial: 'posts/footer', locals: {post: post} %>
+    </footer>
+  </article>
+</div>

@@ -36,6 +36,24 @@ $(function() {
         type: 'post',
         url: $('#' + form_id).attr('action'),
         data: $('#' + form_id).serialize()
+      });
+
+      var ajax_path = $('#' + form_id).attr('data-ajax-path');
+      $.ajax({
+        type: 'get',
+        url: ajax_path,
+        dataType: 'JSON',
+        success: function(data, textStatus, xhr) {
+          if(data.user_stars) {
+            set_stars(form_id, data.user_stars);
+            set_rated(form_id);
+            $('#' + form_id + '_number').text(data.stars);
+          }
+          else if(data.stars) {
+            set_stars(form_id, data.stars);
+            $('#' + form_id + '_number').text(data.stars);
+          }
+        }
       }); 
     });
   }

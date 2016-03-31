@@ -1,0 +1,7 @@
+<div class="comment-header">
+  <%= link_to gravatar_for(comment.user, {:size => '24'}), user_path(:id => comment.user.id), class: "post-author" %>
+  <%= link_to comment.user.name, user_path(:id => comment.user.id), class: "post-author" %>
+</div>
+<div class="comment-body">
+  <%= comment.text %>
+</div>
