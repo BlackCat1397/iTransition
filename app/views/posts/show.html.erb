@@ -1,18 +1,28 @@
-<%= render partial: '/static_pages/post', locals: {:post => @post} %>
+<%= render partial: '/posts/post', locals: {:post => @post} %>
 
-<% @post.comments.each do |comment| %>
-  <%= render partial: 'comment', locals: {:comment => comment} %>
-<% end %>
+<div class="row col-md-offset-2 col-md-8">
+  <% @post.comments.each do |comment| %>
+    <%= render partial: 'comment', locals: {:comment => comment} %>
+  <% end %>
+</div>
 
+<div class="col-md-offset-2 col-md-8 row comment-login">
 
-<%= form_for(@post.comments.build) do |f| %>
-  <%= f.hidden_field :post_id, :value => @post.id %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="field">
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  <% if current_user %>
+    <%= form_for(@post.comments.build) do |f| %>
+      <%= f.hidden_field :post_id, :value => @post.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-group">
+        <%= f.label :text %><br>
+        <%= f.text_area :text, class: 'form-control' %>
+      </div>
+      <div class="actions">
+        <%= f.submit class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% else %>
+    <h2>You have to <%= link_to 'Log In', new_user_session_path %> or 
+                          <%= link_to 'Sign Up', new_user_registration_path %>
+                          to leave comments!</h2>
+  <% end %>
+</div>

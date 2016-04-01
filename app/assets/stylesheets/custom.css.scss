@@ -50,6 +50,15 @@ textarea {
   margin-bottom: 10px;
 }
 
+.comment-login {
+  margin-top: 20px;
+  h2 {
+    float: left;
+    padding: 0px;
+    margin: 20px 0 20px 0;
+  }
+}
+
 .center {
   text-align: center;
   h1 {
@@ -151,7 +160,7 @@ article {
   margin-right: 10px;
   font-size: 1.7em;
   color: white;
-  text-transform: uppercase;
+/*  text-transform: uppercase;*/
   letter-spacing: -1px;
   padding-top: 15px;
   font-weight: bold;

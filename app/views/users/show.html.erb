@@ -17,6 +17,9 @@
   <% end %>
 </div>
 <p id="notice"><%= notice %></p>
-<%= render 'posts' %>
+<% @posts.each do |post| %>
+  <%= render :partial => '/posts/post', locals: {:post => post, :@show_buttons => 1} %>
+<% end %>
+
 #content
 #medals

@@ -1,0 +1,35 @@
+<div class="row my-article">
+  <article class="center col-md-offset-2 col-md-8">
+    <header class="row">
+      <div class="col-sm-8">
+        <h1 class="post-title"><%= post.title %></h1>
+      </div>
+
+      <% if current_user && @show_buttons %>
+        <% if current_user.id == @user.id || User.find_by(:id => current_user.id).has_role?(:admin) %>
+          <div class="col-sm-4 post-btns">
+
+            <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
+                  edit_user_post_path(:user_id => @user.id, :id => post.id) %>
+            <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
+                  user_post_path(:user_id => @user.id, :id => post.id),
+                  :data => {:confirm => 'Are you sure?'}, :method => 'delete' %>
+          </div>
+        <% end %>
+      <% end %>
+    </header>
+
+    <div class="post-preview-content"> 
+      <% @chapter = post.chapters.find_by(:number => 1) %>
+      <h4><%= @chapter.title %></h4>
+      <% if @chapter.content %>
+        <p><%= (@chapter.content.split[0..100].join(' ')) + ' ' %><%= link_to 'read more', '#' %></p>
+      <% else %>
+        <p>No content yet</p>
+      <% end %>
+    </div>
+    <footer>
+      <%= render partial: 'posts/footer', locals: {post: post} %>
+    </footer>
+  </article>
+</div>
