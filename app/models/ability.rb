@@ -14,10 +14,12 @@ class Ability
       can :read, :all
       can :show, :all
       can :rating, :all
+      can :comment, :all
     else
       can :read, :all
       can :show, :all
       can :rating, :all
+      can :comment, :all
     end
     # Define abilities for the passed in user here. For example:
     #

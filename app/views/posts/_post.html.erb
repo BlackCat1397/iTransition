@@ -23,7 +23,8 @@
       <% @chapter = post.chapters.find_by(:number => 1) %>
       <h4><%= @chapter.title %></h4>
       <% if @chapter.content %>
-        <p><%= (@chapter.content.split[0..100].join(' ')) + ' ' %><%= link_to 'read more', '#' %></p>
+        <p><%= (@chapter.content.split[0..100].join(' ')) + ' ' %><%= link_to 'read more',
+                      user_post_path(:id => post.id, :user_id => post.user.id) %></p>
       <% else %>
         <p>No content yet</p>
       <% end %>

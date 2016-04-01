@@ -23,4 +23,8 @@ class ChaptersController < ApplicationController
     @chapter.update(chapter_params)
     redirect_to edit_user_post_path(:id => params[:post_id])
   end
+
+  def show
+    @chapter = Chapter.find_by(:id => params[:id])
+  end
 end

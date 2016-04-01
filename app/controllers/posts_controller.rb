@@ -40,7 +40,11 @@ class PostsController < ApplicationController
       render :json => {:stars => @stars}
     end 
   end
+  
   def update
+  end
+
+  def comment
   end
 
   def destroy

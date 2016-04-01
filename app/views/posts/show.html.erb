@@ -1,28 +1,11 @@
-<%= render partial: '/posts/post', locals: {:post => @post} %>
-
-<div class="row col-md-offset-2 col-md-8">
-  <% @post.comments.each do |comment| %>
-    <%= render partial: 'comment', locals: {:comment => comment} %>
-  <% end %>
-</div>
-
-<div class="col-md-offset-2 col-md-8 row comment-login">
-
-  <% if current_user %>
-    <%= form_for(@post.comments.build) do |f| %>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="form-group">
-        <%= f.label :text %><br>
-        <%= f.text_area :text, class: 'form-control' %>
-      </div>
-      <div class="actions">
-        <%= f.submit class: 'btn btn-primary' %>
-      </div>
-    <% end %>
-  <% else %>
-    <h2>You have to <%= link_to 'Log In', new_user_session_path %> or 
-                          <%= link_to 'Sign Up', new_user_registration_path %>
-                          to leave comments!</h2>
+<div class="row">
+  <% @post.chapters.each do |chapter| %>
+    <div style="margin-top: 40px">
+      <% if !chapter.title.blank? %>
+        <%= link_to chapter.title, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
+      <% else %>
+        <%= link_to chapter.number, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
+      <% end %>
+    </div>
   <% end %>
 </div>
