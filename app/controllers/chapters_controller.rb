@@ -5,7 +5,7 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_params
-    params.require(:chapter).permit(:title, :content)
+    params.require(:chapter).permit(:title, :content, :number)
   end
 
   def create

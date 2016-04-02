@@ -1,3 +1,35 @@
 <div class="row">
-  <%= @chapter.content %>
-</div>  
+  <article class="col-md-offset-2 col-md-8">
+    <header>
+      
+    </header>
+    <div class="chapter-content"> 
+      <h3><%= @chapter.title %></h3>
+      <% if @chapter.content %>
+        <p><%= (@chapter.content) %></p>
+      <% else %>
+        <p>No content yet</p>
+      <% end %>
+    </div>
+    <footer>
+      <div class="center">
+        <div class="chapter-nav-btn">
+          <% if @chapter.number != 1 %>  
+            <%= link_to '<span class="glyphicon glyphicon-chevron-left"></span>'.html_safe,
+                    user_post_chapter_path(:id => @chapter.post.chapters.find_by(:number => @chapter.number-1)) %>
+          <% end %>
+        </div>
+        <div class="chapter-nav-btn">
+          <%= link_to '<span class="glyphicon glyphicon-home"></span>'.html_safe,
+                  user_post_path(:user_id => @chapter.post.user.id, :id => @chapter.post.id) %>
+        </div>
+        <div class="chapter-nav-btn">
+          <% if @chapter.number < @chapter.post.chapters.length %>
+            <%= link_to '<span class="glyphicon glyphicon-chevron-right"></span>'.html_safe,
+                    user_post_chapter_path(:id => @chapter.post.chapters.find_by(:number => @chapter.number+1)) %>
+          <% end %>
+        </div>
+      </div>
+    </footer>
+  </article>
+</div>

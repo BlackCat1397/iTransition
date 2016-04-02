@@ -1,6 +1,6 @@
 <% provide(:title, 'New chapter') %>
 <h1>Create chapter</h1>
-  <%= render 'form' %>
+  <%= render partial: 'form', :locals => {number: Post.find_by(:id => params[:post_id]).chapters.length} %>
 
 
 <%= link_to 'Back', edit_user_post_path(:id => params[:post_id]) %>

@@ -1,11 +1,23 @@
-<div class="row">
+<div class="chapter-list">
   <% @post.chapters.each do |chapter| %>
-    <div style="margin-top: 40px">
-      <% if !chapter.title.blank? %>
-        <%= link_to chapter.title, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
-      <% else %>
-        <%= link_to chapter.number, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
-      <% end %>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 chapter-title">
+        <% if !chapter.title.blank? %>
+          <%= link_to chapter.title, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
+        <% else %>
+          <%= link_to chapter.number, user_post_chapter_path(:id => chapter.id, :user_id => chapter.user_id, :post_id => chapter.post_id) %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8">
+        <% if chapter.content %>
+          <p><%= (chapter.content.split[0..100].join(' ')) + ' ' %><%= link_to 'read more',
+                        user_post_chapter_path(:id => chapter.id, :post_id => chapter.post.id, :user_id => chapter.post.user.id) %></p>
+        <% else %>
+          <p>No content yet</p>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

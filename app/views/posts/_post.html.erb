@@ -24,7 +24,7 @@
       <h4><%= @chapter.title %></h4>
       <% if @chapter.content %>
         <p><%= (@chapter.content.split[0..100].join(' ')) + ' ' %><%= link_to 'read more',
-                      user_post_path(:id => post.id, :user_id => post.user.id) %></p>
+                      user_post_chapter_path(:id => @chapter.id, :post_id => post.id, :user_id => post.user.id) %></p>
       <% else %>
         <p>No content yet</p>
       <% end %>

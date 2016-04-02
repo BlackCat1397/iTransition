@@ -2,11 +2,16 @@
   <div class="row">
     <%= form_for(@chapter, :url => user_post_chapters_path,
             html: { method: :post, class: 'col-sm-offset-3 col-md-offset-4 col-sm-6 col-md-4' }) do |f| %>
-
+    
+      <div><%= number %></div>
       <div class="form-group">
         <%= f.label :title %><br/>
         <%= f.text_field :title, autofocus: true, class: 'form-control' %>
       </div>
+
+      <%= f.hidden_field :number, :value => number+1 %>
+
+      <% @chapter.number = number %>
 
       <div class="actions">
         <%= f.submit "Create", class: 'btn btn-primary'  %>
