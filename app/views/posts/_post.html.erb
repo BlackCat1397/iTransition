@@ -1,13 +1,13 @@
 <div class="row my-article">
   <article class="center col-md-offset-2 col-md-8">
     <header class="row">
-      <div class="col-sm-8">
+      <div class="col-xs-8 col-sm-10">
         <h1 class="post-title"><%= post.title %></h1>
       </div>
 
       <% if current_user && @show_buttons %>
         <% if current_user.id == @user.id || User.find_by(:id => current_user.id).has_role?(:admin) %>
-          <div class="col-sm-4 post-btns">
+          <div class="col-xs-4 col-sm-2 post-btns">
 
             <%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
                   edit_user_post_path(:user_id => @user.id, :id => post.id) %>

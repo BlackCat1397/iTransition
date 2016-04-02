@@ -35,6 +35,11 @@ textarea {
       margin: 0 -1px 0 0;
       &:first-child{border-right: 0; padding-right: 0px;}
       &:nth-child(2){border-left: 0;}  
+
+      @media screen and (max-width: 420px){
+        font-size: 12px;
+        padding: 0 10px;  
+      }
     }
   }
 }
@@ -79,11 +84,16 @@ h1, h2, h3, h4, h5, h6 {
 a.btn:visited {
   color: #fff;
 }
+
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+
+  @media screen and (max-width: 420px){
+    font-size: 28px;
+  }
 }
 
 h2 {
@@ -132,6 +142,9 @@ article {
       font-size: 14px;
     }
   }
+  @media screen and (max-width: 420px){
+    margin-top: 4px;
+  }
 }
 
 .post-preview-content {
@@ -155,7 +168,7 @@ article {
 
 /* logo */
 
-#logo {
+.logo.navbar-brand {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
