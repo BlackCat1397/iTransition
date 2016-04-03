@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @posts = Post.order(:updated_at).limit(10)
+    @posts = Post.order(:updated_at).limit(10).reverse_order
   end
 
   def help

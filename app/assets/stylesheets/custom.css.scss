@@ -44,6 +44,7 @@ textarea {
   }
 }
 
+
 .comment-header {
   margin-top: 30px;
   margin-bottom: 10px;
@@ -55,6 +56,37 @@ textarea {
   margin-bottom: 10px;
 }
 
+.comment-footer {
+  color: #ccc;
+  .comment-datetime {
+    font-size: 0.6em;
+    font-weight: bold;
+  }
+  span {
+    font-size: 12px;
+  }
+  ul {
+    font-size: 0;
+    padding-left: 0;
+    text-align: left;
+    li {
+      font-size: 12px;
+      padding: 0 15px;
+      list-style: none;
+      display: inline-block;
+      vertical-align: top;
+      line-height: 38px;
+      margin: -10px -1px 0 0;
+      &:first-child{border-right: 0; padding-right: 0px;}
+      &:nth-child(2){border-left: 0;}  
+
+      @media screen and (max-width: 420px){
+        font-size: 12px;
+        padding: 0 10px;  
+      }
+    }
+  }
+}
 .comment-login {
   margin-top: 20px;
   h2 {

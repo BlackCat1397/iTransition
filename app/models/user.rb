@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
   has_many :comments, through: :posts
+  has_many :likes, through: :comments
   before_create :set_default_role
 
   ROLES = %i[admin user]

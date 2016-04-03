@@ -5,3 +5,7 @@
 <div class="comment-body">
   <%= comment.text %>
 </div>
+<div class="comment-footer">
+  <div class="comment-datetime pull-left"><%= comment.created_at %></div>
+  <%= render :partial => 'likes', :locals => {:comment => comment} %>
+</div>

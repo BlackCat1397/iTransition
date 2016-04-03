@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329210428) do
+ActiveRecord::Schema.define(version: 20160403183512) do
 
   create_table "chapters", force: :cascade do |t|
     t.text     "content",    limit: 65535
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20160329210428) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "comment_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "likes", ["comment_id"], name: "index_likes_on_comment_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -96,6 +106,8 @@ ActiveRecord::Schema.define(version: 20160329210428) do
   add_foreign_key "chapters", "posts"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "comments"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "ratings", "posts"
   add_foreign_key "ratings", "users"

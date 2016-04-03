@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   resources :ratings
   resources :comments
-  get '/statuses' => 'statuses#index'
+  resources :likes
+  
   root 'static_pages#home'
 
   get '/posts/:id/rating' => 'posts#rating'

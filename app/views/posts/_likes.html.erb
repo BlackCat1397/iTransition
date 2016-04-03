@@ -1,0 +1,14 @@
+<% form_id = "comment_#{comment.id}_likes" %>
+<ul class="pull-right">
+  <li><span id='<%= "#{form_id}_number" %>'></span></li>
+  <li>
+    <%= form_for comment.likes.build,
+                    :html => {:id => form_id, :class => 'likes-form', data: {ajax_path: "/posts/#{comment.id}/rating"}} do |f| %>
+      <%= f.hidden_field :comment_id %>
+      <% if current_user %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% end %>
+    <% end %>
+    <span class="glyphicon glyphicon-heart star-rating" data-form-id="<%= form_id %>"></span>
+  </li>
+</ul>
