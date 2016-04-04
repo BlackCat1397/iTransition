@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
     elsif user.has_role?(:user)
       can :manage, Post, { user_id: user.id }
-      can :manage, Chapter, { user_id: user.id}
+      can :manage, Chapter
       can :read, :all
       can :show, :all
       can :rating, :all

@@ -19,5 +19,10 @@
         <% end %>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 chapter-title">
+        <%= link_to "Back to #{@post.user.name}", user_path(:id => @post.user.id) %>
+      </div>
+    </div>
   <% end %>
 </div>

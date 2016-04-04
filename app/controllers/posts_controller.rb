@@ -4,6 +4,8 @@ class PostsController < ApplicationController
 
 
   def new
+    @post = Post.new(:user_id => params[:user_id])
+    authorize! :manage, @post
   end
 
   def post_params
@@ -29,7 +31,12 @@ class PostsController < ApplicationController
 
   def rating
     @post = Post.find_by(:id => params[:id])
-    @stars = @post.ratings.average(:stars)||('-')
+    if @post.ratings.average(:stars)
+      @stars = @post.ratings.average(:stars).round(1)
+    else
+      @stars = '-'
+    end
+
     if current_user
       if(@rating = @post.ratings.find_by(:user_id => current_user.id))
         render :json => {:user_stars => @rating.stars, :stars => @stars}

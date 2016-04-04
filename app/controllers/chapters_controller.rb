@@ -1,5 +1,13 @@
 class ChaptersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :post
+  load_and_authorize_resource :chapter, :throught => :post
+
+  skip_authorize_resource :post, :only => :show
+
+  before_filter :authorize_parent
+  skip_before_filter :authorize_parent, :only => [:show]
+
+
   def new
     @chapter = Chapter.new
   end
@@ -27,4 +35,9 @@ class ChaptersController < ApplicationController
   def show
     @chapter = Chapter.find_by(:id => params[:id])
   end
+
+  private
+    def authorize_parent
+      authorize! :manage, (@post)
+    end
 end
