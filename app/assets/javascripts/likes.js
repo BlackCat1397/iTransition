@@ -41,7 +41,6 @@ $(function() {
           $('#' + form_id + '_number').text(data.likes);
         }
         else if(data.likes != undefined) {
-          alert(data.likes);
           $('#' + form_id + '_number').text(data.likes);
         }
       }

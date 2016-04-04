@@ -35,7 +35,10 @@ $(function() {
       $.ajax({
         type: 'post',
         url: $('#' + form_id).attr('action'),
-        data: $('#' + form_id).serialize()
+        data: $('#' + form_id).serialize(),
+        success: function(data, textStatus, xhr) {
+          $('#' + form_id + '_number').text(data.stars);
+        }
       });
 
 /* MUST DO ON PREV AJAX SUCCESS */

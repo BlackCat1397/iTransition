@@ -34,15 +34,9 @@ class RatingsController < ApplicationController
       @rating.save
     end
 
-    respond_to do |format|
-      if @rating.save
-        format.html { redirect_to '#', notice: 'Rating was successfully created.' }
-        format.json { render :show, status: :created, location: @rating }
-      else
-        format.html { render :new }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
+    render :json => {
+          :stars => @rating.post.ratings.average(:stars).round(1)
+    }
   end
 
   # PATCH/PUT /ratings/1
