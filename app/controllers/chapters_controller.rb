@@ -36,6 +36,14 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find_by(:id => params[:id])
   end
 
+  def destroy
+    @chapter.destroy
+    respond_to do |format|
+      format.html { redirect_to edit_user_post_url(:id => params[:post_id], :user_id => params[:user_id]), notice: 'Chapter was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     def authorize_parent
       authorize! :manage, (@post)

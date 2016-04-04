@@ -1,6 +1,12 @@
-<div class="comment-header">
-  <%= link_to gravatar_for(comment.user, {:size => '24'}), user_path(:id => comment.user.id), class: "post-author" %>
-  <%= link_to comment.user.name, user_path(:id => comment.user.id), class: "post-author" %>
+<div class="comment-header row">
+  <div class="col-xs-8 col-sm-10 pull-left">
+    <%= link_to gravatar_for(comment.user, {:size => '24'}), user_path(:id => comment.user.id), class: "post-author" %>
+    <%= link_to comment.user.name, user_path(:id => comment.user.id), class: "post-author" %>
+  </div>
+  <div class="col-xs-4 col-sm-2 comment-btns pull-right">
+            <%= link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe,
+                  comment_path(:id => comment.id), :data => {:confirm => 'Are you sure?'}, :method => 'delete' %>
+  </div>
 </div>
 <div class="comment-body">
   <%= comment.text %>

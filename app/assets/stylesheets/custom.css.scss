@@ -117,6 +117,11 @@ a.btn:visited {
   color: #fff;
 }
 
+a.btn-link:visited {
+  color: #ccc;
+}
+
+
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -188,6 +193,20 @@ article {
     .glyphicon-remove {
       font-size: 14px;
     }
+  }
+}
+
+.comment-btns {
+  text-align: right;
+  a {
+    margin-left: 15px;
+    .glyphicon-remove {
+      font-size: 8px;
+      margin-right: 14px;
+    }
+  }
+  @media screen and (max-width: 420px){
+    margin-top: 4px;
   }
 }
 

@@ -8,7 +8,4 @@ class Chapter < ActiveRecord::Base
   def user_id
     self.post.user_id
   end
-
-  def zopa
-  end
 end

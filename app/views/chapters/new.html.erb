@@ -3,4 +3,4 @@
   <%= render partial: 'form', :locals => {number: Post.find_by(:id => params[:post_id]).chapters.length} %>
 
 
-<%= link_to 'Back', edit_user_post_path(:id => params[:post_id]) %>
+<%= link_to 'Back', edit_user_post_path(:id => params[:post_id]), :class => "btn btn-link" %>
