@@ -36,7 +36,7 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
+        format.html { redirect_to '#', notice: 'Rating was successfully created.' }
         format.json { render :show, status: :created, location: @rating }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class RatingsController < ApplicationController
   def update
     respond_to do |format|
       if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
+        format.html { redirect_to '#', notice: 'Rating was successfully updated.' }
         format.json { render :show, status: :ok, location: @rating }
       else
         format.html { render :edit }

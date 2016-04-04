@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get '/posts/:id/rating' => 'posts#rating'
   get '/posts/:id/comments' => 'posts#comment', as: 'post_comments'
-
+  get '/comments/:id/like' => 'comments#likes', as: 'comment_likes'
   get '/home' => 'static_pages#home'
 
   get '/help' => 'static_pages#help'

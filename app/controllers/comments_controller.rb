@@ -61,6 +61,21 @@ class CommentsController < ApplicationController
     end
   end
 
+  def likes
+  @comment = Comment.find_by(:id => params[:id])
+  @likes = @comment.likes.length
+
+  if current_user
+    if(@user_like = @comment.likes.find_by(:user_id => current_user.id))
+      render :json => {:user_like => '1', :likes => @likes}
+    else
+      render :json => {:likes => @likes}
+    end 
+  else
+    render :json => {:likes => @likes}
+  end 
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment

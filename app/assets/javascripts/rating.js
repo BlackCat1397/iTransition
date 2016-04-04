@@ -38,19 +38,14 @@ $(function() {
         data: $('#' + form_id).serialize()
       });
 
+/* MUST DO ON PREV AJAX SUCCESS */
       var ajax_path = $('#' + form_id).attr('data-ajax-path');
       $.ajax({
         type: 'get',
         url: ajax_path,
         dataType: 'JSON',
         success: function(data, textStatus, xhr) {
-          if(data.user_stars) {
-            set_stars(form_id, data.user_stars);
-            set_rated(form_id);
-            $('#' + form_id + '_number').text(data.stars);
-          }
-          else if(data.stars) {
-            set_stars(form_id, data.stars);
+          if(data.stars) {
             $('#' + form_id + '_number').text(data.stars);
           }
         }
